@@ -19,7 +19,7 @@ const SolicitarMediacion = () => {
 
     const solicitarMediacion = async () => {
         try {
-            await axios.post('/api/mediations', mediacion, {
+            await axios.post('http://localhost:5000/api/mediations', mediacion, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
             Swal.fire({

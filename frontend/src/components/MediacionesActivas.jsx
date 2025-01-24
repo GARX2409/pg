@@ -9,7 +9,7 @@ const MediacionesActivas = () => {
 
     useEffect(() => {
         const fetchMediaciones = async () => {
-            const response = await axios.get('/api/mediations', {
+            const response = await axios.get('http://localhost:5000/api/mediations', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
             setMediaciones(response.data);
@@ -30,7 +30,7 @@ const MediacionesActivas = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`/api/mediations/${id}`, {
+                await axios.delete(`http://localhost:5000/api/mediations/${id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 });
                 Swal.fire({

@@ -1,11 +1,10 @@
 const express = require('express');
-const cors = require('cors'); // Importa el paquete cors
+const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const mediationRoutes = require('./routes/mediation');
 const statsRoutes = require('./routes/stats');
-const authMiddleware = require('./middlewares/authMiddleware');
 
 const app = express();
 const PORT = process.env.PORT || 5000;

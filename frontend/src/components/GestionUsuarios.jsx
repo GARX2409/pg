@@ -11,7 +11,7 @@ const GestionUsuarios = () => {
     }, []);
 
     const fetchUsuarios = async () => {
-        const response = await axios.get('/api/users', {
+        const response = await axios.get('http://localhost:5000/api/users', {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setUsuarios(response.data);
@@ -23,7 +23,7 @@ const GestionUsuarios = () => {
 
     const agregarUsuario = async () => {
         try {
-            await axios.post('/api/users', nuevoUsuario, {
+            await axios.post('http://localhost:5000/api/users', nuevoUsuario, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
             Swal.fire({
@@ -56,7 +56,7 @@ const GestionUsuarios = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`/api/users/${id}`, {
+                await axios.delete(`http://localhost:5000/api/users/${id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 });
                 Swal.fire({

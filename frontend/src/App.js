@@ -15,10 +15,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Login />} />
-                <Route path="/menu-estudiante" element={<MenuEstudiante />} />
-                <Route path="/menu-docente" element={<MenuDocente />} />
-                <Route path="/menu-mediador" element={<MenuMediador />} />
-                <Route path="/menu-developer" element={<MenuDeveloper />} />
+                <Route path="/estudiante" element={<MenuEstudiante />} />
+                <Route path="/docente" element={<MenuDocente />} />
+                <Route path="/mediador" element={<MenuMediador />} />
+                <Route path="/developer" element={<MenuDeveloper />} />
                 <Route path="/gestion-usuarios" element={<GestionUsuarios />} />
                 <Route path="/gestion-mediaciones" element={<GestionMediaciones />} />
                 <Route path="/estadisticas" element={<Estadisticas />} />

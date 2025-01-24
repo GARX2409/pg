@@ -16,19 +16,25 @@ const Login = () => {
                 username,
                 password,
             });
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('role', res.data.role);
-            localStorage.setItem('userId', res.data.userId);
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Inicio de sesión exitoso',
-                showConfirmButton: false,
-                timer: 1500,
-            });
+            // Verifica que los datos estén presentes en la respuesta
+            if (res.data.token && res.data.role && res.data.userId) {
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('role', res.data.role);
+                localStorage.setItem('userId', res.data.userId);
 
-            // Redirección según el rol
-            navigate(`/${res.data.role}`);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Inicio de sesión exitoso',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+
+                // Redirección según el rol
+                navigate(`/${res.data.role}`);
+            } else {
+                throw new Error('Datos incompletos en la respuesta del servidor');
+            }
         } catch (error) {
             Swal.fire({
                 icon: 'error',

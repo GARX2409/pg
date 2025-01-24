@@ -18,7 +18,7 @@ const InformacionPersonal = () => {
 
     const actualizarContrasena = async () => {
         try {
-            await axios.put('/api/auth/update-password', { password: nuevaContrasena }, {
+            await axios.put('http://localhost:5000/api/auth/update-password', { password: nuevaContrasena }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
             Swal.fire({

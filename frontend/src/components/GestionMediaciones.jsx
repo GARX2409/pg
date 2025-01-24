@@ -17,7 +17,7 @@ const GestionMediaciones = () => {
     }, []);
 
     const fetchMediaciones = async () => {
-        const response = await axios.get('/api/mediations', {
+        const response = await axios.get('http://localhost:5000/api/mediations', {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setMediaciones(response.data);
@@ -29,7 +29,7 @@ const GestionMediaciones = () => {
 
     const agregarMediacion = async () => {
         try {
-            await axios.post('/api/mediations', nuevaMediacion, {
+            await axios.post('http://localhost:5000/api/mediations', nuevaMediacion, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
             Swal.fire({
@@ -68,7 +68,7 @@ const GestionMediaciones = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`/api/mediations/${id}`, {
+                await axios.delete(`http://localhost:5000/api/mediations/${id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 });
                 Swal.fire({
