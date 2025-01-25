@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import '../styles/gestionusuarios.css';
+
 
 const GestionUsuarios = () => {
     const [usuarios, setUsuarios] = useState([]);
