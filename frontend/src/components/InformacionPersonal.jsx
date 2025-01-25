@@ -8,19 +8,33 @@ const InformacionPersonal = () => {
 
     useEffect(() => {
         const fetchUsuario = async () => {
-            const response = await axios.get('/api/auth/user', {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-            });
-            setUsuario(response.data);
+            try {
+                const response = await axios.get('http://localhost:5000/api/auth/user', {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                });
+                setUsuario(response.data);
+            } catch (error) {
+                console.error('Error al obtener la información del usuario:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo cargar la información del usuario',
+                });
+            }
         };
+
         fetchUsuario();
     }, []);
 
     const actualizarContrasena = async () => {
         try {
-            await axios.put('http://localhost:5000/api/auth/update-password', { password: nuevaContrasena }, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-            });
+            await axios.put(
+                'http://localhost:5000/api/auth/update-password',
+                { password: nuevaContrasena },
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                }
+            );
             Swal.fire({
                 icon: 'success',
                 title: 'Contraseña actualizada',
@@ -28,6 +42,7 @@ const InformacionPersonal = () => {
                 timer: 1500,
             });
         } catch (error) {
+            console.error('Error al actualizar la contraseña:', error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -49,7 +64,6 @@ const InformacionPersonal = () => {
                 />
                 <button onClick={actualizarContrasena}>Actualizar Contraseña</button>
             </div>
-            <Link to="/menu-estudiante" className="btn btn-secondary">Regresar al Menú</Link>
         </div>
     );
 };

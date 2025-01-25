@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, 'puente123');
+        const decoded = jwt.verify(token, 'puente123'); // Usa tu clave secreta
         req.user = decoded;
         next();
     } catch (error) {

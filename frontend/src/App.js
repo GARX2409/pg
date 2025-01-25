@@ -8,6 +8,9 @@ import MenuDeveloper from './components/MenuDeveloper';
 import GestionUsuarios from './components/GestionUsuarios';
 import GestionMediaciones from './components/GestionMediaciones';
 import Estadisticas from './components/Estadisticas';
+import MediacionesActivas from './components/MediacionesActivas';
+import  SolicitarMediacion from './components/SolicitarMediacion';
+import  InformacionPersonal from './components/InformacionPersonal';
 import './styles/App.css';
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
                 <Route path="/gestion-usuarios" element={<GestionUsuarios />} />
                 <Route path="/gestion-mediaciones" element={<GestionMediaciones />} />
                 <Route path="/estadisticas" element={<Estadisticas />} />
+                <Route path="/mediacionesactivas" element={<MediacionesActivas />} />
+                <Route path="/solicitarmediacion" element={<SolicitarMediacion />} />
+                <Route path="/informacionpersonal" element={<InformacionPersonal />} />
             </Routes>
         </Router>
     );

@@ -3,7 +3,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const Estadisticas = () => {
-    const [stats, setStats] = useState({});
+    const [stats, setStats] = useState({
+        mediacionesActivas: 0,
+        mediacionesResueltas: 0,
+        mediacionesCanceladas: 0,
+        totalUsuarios: 0,
+        totalMediaciones: 0,
+    });
 
     useEffect(() => {
         const fetchStats = async () => {
@@ -13,6 +19,7 @@ const Estadisticas = () => {
                 });
                 setStats(response.data);
             } catch (error) {
+                console.error('Error al obtener las estadísticas:', error);
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
@@ -20,6 +27,7 @@ const Estadisticas = () => {
                 });
             }
         };
+
         fetchStats();
     }, []);
 

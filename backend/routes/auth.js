@@ -1,32 +1,15 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 const router = express.Router();
+const { login, getUser, updatePassword } = require('../controllers/authController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
-router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+// Endpoint para iniciar sesión
+router.post('/login', login);
 
-    try {
-        // Busca el usuario en la base de datos
-        const user = await User.findOne({ username });
-        if (!user) {
-            return res.status(400).json({ message: 'Usuario no encontrado' });
-        }
+// Endpoint para obtener información del usuario
+router.get('/user', authMiddleware, getUser);
 
-        // Compara la contraseña en texto plano (sin bcrypt)
-        if (password !== user.password) {
-            return res.status(400).json({ message: 'Contraseña incorrecta' });
-        }
-
-        // Genera el token JWT
-        const token = jwt.sign({ id: user._id, role: user.role }, 'puente123', { expiresIn: '1h' });
-
-        // Devuelve los datos necesarios
-        res.json({ token, role: user.role, userId: user._id });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error en el servidor' });
-    }
-});
+// Endpoint para actualizar la contraseña
+router.put('/update-password', authMiddleware, updatePassword);
 
 module.exports = router;
